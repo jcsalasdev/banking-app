@@ -13,7 +13,7 @@ function SignUp() {
 	]);
 
 	const onSignUpHandler = (adminUser) => {
-		console.log(setAdminUsers([...adminUsers, adminUser]));
+		console.log(adminUser);
 	};
 	return (
 		<div className="SignUpForm-con">
