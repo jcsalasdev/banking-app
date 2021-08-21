@@ -1,7 +1,6 @@
 import React from "react";
 
 import ExpenseItem from "./ExpenseItem";
-import Card from "../UI/Card";
 import "./Expenses.css";
 
 const Expenses = (props) => {
@@ -9,16 +8,17 @@ const Expenses = (props) => {
 	for (let i = 0; i < props.items.length; i++) {
 		expenseItems.push(
 			<ExpenseItem
+				key={props.items[i].id}
 				title={props.items[i].title}
 				amount={props.items[i].amount}
-				date={props.items[i].date}
+				date={new Date(props.items[i].date)}
 			/>
 		);
 	}
 
 	return (
 		<div>
-			<Card className="expenses">{expenseItems}</Card>
+			<div className="expenses">{expenseItems}</div>
 		</div>
 	);
 };

@@ -1,0 +1,24 @@
+* {
+	margin: 0;
+	box-sizing: border-box;
+}
+
+h1,
+p {
+	font-family: Lato;
+}
+
+body {
+	background-image: url(./img/bg5.jpg);
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+.rendered-container {
+	display: flex;
+}
+
+/* .container-add_user {
+	margin: 0px 3rem;
+	width: 70vw;
+} */

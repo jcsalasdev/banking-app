@@ -1,40 +1,91 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import SignIn from "./Components/SignIn/SignIn";
+import SignUp from "./Components/SignUp/SignUp";
+import NavBar from "./Components/Nav/NavBar";
+import Aside from "./Components/AsideNav/Aside";
+import AddUser from "./Components/Users/AddUser";
+import Deposit from "./Components/Deposit/Deposit";
+import Transfer from "./Components/Transfer/Transfer";
+import Withdraw from "./Components/Withdraw/Withdraw";
+import UsersList from "./Components/Users/UsersList";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import BudgetApp from "./BudgetApp";
+import "./style.css";
 
-import NewExpense from "./components/NewExpense/NewExpense";
-import Expenses from "./components/Expenses/Expenses";
+function App() {
+	const [usersList, setUsersList] = useState([]);
 
-const App = () => {
-	const [expenses, setExpenses] = useState([
-		{
-			id: "e1",
-			title: "Paper",
-			amount: 9400.12,
-			date: new Date(2020, 7, 14),
-		},
-		{
-			id: "e1",
-			title: "Toilet Paper",
-			amount: 11924.12,
-			date: new Date(2020, 7, 14),
-		},
-		{
-			id: "e2",
-			title: "New TV",
-			amount: 799.49,
-			date: new Date(2021, 2, 12),
-		},
-	]);
-
-	const addExpenseHandler = (expense) => {
-		setExpenses([...expenses, expense]);
+	const addUserHandler = (uName, uBalance, uEmail) => {
+		setUsersList((prevUsersList) => {
+			return [
+				...prevUsersList,
+				{
+					name: uName,
+					balance: uBalance,
+					email: uEmail,
+					id: Math.floor(1000 + Math.random() * 9000).toString(),
+				},
+			];
+		});
 	};
 
+	useEffect(() => {
+		const usersList = JSON.parse(localStorage.getItem("usersList"));
+		if (usersList) {
+			setUsersList(usersList);
+		}
+	}, []);
+
+	useEffect(() => {
+		localStorage.setItem("usersList", JSON.stringify(usersList));
+	}, [usersList]);
+
 	return (
-		<div>
-			<NewExpense onAddExpense={addExpenseHandler} />
-			<Expenses items={expenses} />
-		</div>
+		<Router>
+			<div>
+				<Switch>
+					<Route exact path="/">
+						<SignIn />
+					</Route>
+					<Route path="/signup">
+						<SignUp />
+					</Route>
+
+					<Route path="/Admin">
+						<NavBar />
+						<div className="rendered-container">
+							<Aside />
+							<Route path="/Admin/BudgetApp" component={BudgetApp} />
+
+							<div>
+								<Route
+									exact
+									path="/Admin/UserData/Deposit"
+									component={Deposit}
+								/>
+								<Route
+									exact
+									path="/Admin/UserData/Transfer"
+									component={Transfer}
+								/>
+								<Route
+									exact
+									path="/Admin/UserData/Withdraw"
+									component={Withdraw}
+								/>
+								<Route exact path="/Admin/UserData/Add-user">
+									<AddUser onAddUser={addUserHandler} />
+								</Route>
+								<Route path="/Admin/UserData">
+									<UsersList users={usersList} />
+								</Route>
+							</div>
+						</div>
+					</Route>
+				</Switch>
+			</div>
+		</Router>
 	);
-};
+}
 
 export default App;

@@ -1,6 +1,7 @@
 /node_modules
 .eslintcache
 package-lock.json
+/build
 /.pnp
 .pnp.js
 
