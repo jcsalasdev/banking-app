@@ -6,17 +6,18 @@ import ErrorModal from "../UI/ErrorModal";
 import classes from "./Deposit.module.css";
 
 const Deposit = (props) => {
-	const [clientName, setClientName] = useState("");
+	const [clientID, setClientID] = useState("");
 	const [depositAmount, setDepositAmount] = useState("");
 	const [error, setError] = useState();
 
 	const depositHandler = (event) => {
 		event.preventDefault();
 
-		if (clientName.trim().length === 0 || depositAmount.trim().length === 0) {
+		if (clientID.trim().length === 0 || depositAmount.trim().length === 0) {
 			setError({
 				title: "Invalid input",
-				message: "Please enter a valid name  and amount (non-empty values).",
+				message:
+					"Please enter a valid ID  and deposit amount (non-empty values).",
 			});
 			return;
 		}
@@ -24,18 +25,18 @@ const Deposit = (props) => {
 		if (depositAmount < 10) {
 			setError({
 				title: "Invalid amount",
-				message: "Please enter a valid amount (> 10$).",
+				message: "Please enter a valid amount (min. 10$).",
 			});
 			return;
 		}
-		props.onDeposit(clientName, depositAmount);
+		props.onDeposit(clientID, depositAmount);
 
-		setClientName("");
+		setClientID("");
 		setDepositAmount("");
 	};
 
-	const clientNameHandler = (event) => {
-		setClientName(event.target.value);
+	const clientIDHandler = (event) => {
+		setClientID(event.target.value);
 	};
 
 	const depositeAmountHandler = (event) => {
@@ -58,12 +59,12 @@ const Deposit = (props) => {
 			<Card className={classes.input}>
 				<form onSubmit={depositHandler}>
 					<div>
-						<label htmlFor="name">Name</label>
+						<label htmlFor="ID">ID#</label>
 						<input
-							id="name"
+							id="ID"
 							type="text"
-							value={clientName}
-							onChange={clientNameHandler}
+							value={clientID}
+							onChange={clientIDHandler}
 						/>
 					</div>
 					<div>

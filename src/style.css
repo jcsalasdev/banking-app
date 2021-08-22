@@ -17,6 +17,21 @@ body {
 .rendered-container {
 	display: flex;
 }
+.total {
+	background-color: rgba(31, 31, 31, 0.746);
+	padding: 0.5rem 1rem;
+	margin: 0.5rem 5.5rem;
+	width: 70vw;
+	max-width: 100%;
+	max-height: 26.3rem;
+	overflow-y: auto;
+	border-radius: 16px;
+	color: white;
+	font-size: 1rem;
+	text-align: center;
+	display: flex;
+	justify-content: space-between;
+}
 
 /* .container-add_user {
 	margin: 0px 3rem;

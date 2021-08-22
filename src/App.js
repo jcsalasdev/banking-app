@@ -50,6 +50,7 @@ function App() {
 					<Route path="/signup">
 						<SignUp />
 					</Route>
+					{/* <SignUp /> */}
 
 					<Route path="/Admin">
 						<NavBar />

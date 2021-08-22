@@ -10,6 +10,7 @@ const SignUpForm = (props) => {
 
 	const signUpHandler = (event) => {
 		event.preventDefault();
+
 		props.onSignUp(name, email, username, password);
 		setUserName("");
 		setPassword("");
@@ -88,6 +89,9 @@ const SignUpForm = (props) => {
 							Sign Up
 						</button>
 					</Link>
+					{/* <button className="btn2" type="submit" value="submit">
+						Sign Up
+					</button> */}
 				</div>
 			</form>
 		</div>

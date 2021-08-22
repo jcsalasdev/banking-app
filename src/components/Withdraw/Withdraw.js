@@ -6,37 +6,34 @@ import ErrorModal from "../UI/ErrorModal";
 import classes from "./Withdraw.module.css";
 
 const Withdraw = (props) => {
-	const [withdrawName, setWithdrawName] = useState("");
+	const [withdrawID, setWithdrawID] = useState("");
 	const [withdrawAmount, setWithdrawAmount] = useState("");
 	const [error, setError] = useState();
 
 	const withdrawHandler = (event) => {
 		event.preventDefault();
-		if (
-			withdrawName.trim().length === 0 ||
-			withdrawAmount.trim().length === 0
-		) {
+		if (withdrawID.trim().length === 0 || withdrawAmount.trim().length === 0) {
 			setError({
 				title: "Invalid input",
 				message:
-					"Please enter a valid name  and withdrawal amount (non-empty values).",
+					"Please enter a valid ID  and withdrawal amount (non-empty values).",
 			});
 			return;
 		}
 		if (withdrawAmount < 1) {
 			setError({
 				title: "Invalid amount",
-				message: "Please enter a valid amount (> 1$).",
+				message: "Please enter a valid amount (min 1$).",
 			});
 			return;
 		}
-		props.onAddUser(withdrawName, withdrawAmount);
-		setWithdrawName("");
+		props.onAddUser(withdrawID, withdrawAmount);
+		setWithdrawID("");
 		setWithdrawAmount("");
 	};
 
-	const withdrawNameHandler = (event) => {
-		setWithdrawName(event.target.value);
+	const withdrawIDHandler = (event) => {
+		setWithdrawID(event.target.value);
 	};
 
 	const withdrawAmountHandler = (event) => {
@@ -59,12 +56,12 @@ const Withdraw = (props) => {
 			<Card className={classes.input}>
 				<form onSubmit={withdrawHandler}>
 					<div>
-						<label htmlFor="name">Name</label>
+						<label htmlFor="ID">ID#</label>
 						<input
-							id="name"
-							type="text"
-							value={withdrawName}
-							onChange={withdrawNameHandler}
+							id="ID"
+							type="number"
+							value={withdrawID}
+							onChange={withdrawIDHandler}
 						/>
 					</div>
 					<div>

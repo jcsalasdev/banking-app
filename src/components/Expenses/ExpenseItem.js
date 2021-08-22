@@ -11,14 +11,18 @@ const ExpenseItem = (props) => {
 				<ExpenseDate date={props.date} />
 				<h2>{props.title}</h2>
 			</div>
-			<div className="expense-item__price">
-				{Number(props.amount).toLocaleString("en-US", {
-					style: "currency",
-					currency: "USD",
-				})}
+			<div className="expense-btn">
+				<div className="expense-item__price">
+					{Number(props.amount).toLocaleString("en-US", {
+						style: "currency",
+						currency: "USD",
+					})}
+				</div>
+				{/* <button
+					className="fas fa-trash-alt expense-item__btn"
+					onClick={deleted}
+				/> */}
 			</div>
-
-			{/* <button className="fas fa-trash-alt expense-item__btn" /> */}
 		</Card>
 	);
 };

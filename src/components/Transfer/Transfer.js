@@ -6,37 +6,34 @@ import ErrorModal from "../UI/ErrorModal";
 import classes from "./Transfer.module.css";
 
 const Transfer = (props) => {
-	const [transferName, setTransferName] = useState("");
+	const [transferID, setTransferID] = useState("");
 	const [transferAmount, setTransferAmount] = useState("");
 	const [error, setError] = useState();
 
 	const transferHandler = (event) => {
 		event.preventDefault();
-		if (
-			transferName.trim().length === 0 ||
-			transferAmount.trim().length === 0
-		) {
+		if (transferID.trim().length === 0 || transferAmount.trim().length === 0) {
 			setError({
 				title: "Invalid input",
 				message:
-					"Please enter a valid name  and transfer amount (non-empty values).",
+					"Please enter a valid ID  and transfer amount (non-empty values).",
 			});
 			return;
 		}
 		if (transferAmount < 5) {
 			setError({
 				title: "Invalid amount",
-				message: "Please enter a valid amount (> 5$).",
+				message: "Please enter a valid amount (min. 5$).",
 			});
 			return;
 		}
-		props.onTransfer(transferName, transferAmount);
-		setTransferName("");
+		props.onTransfer(transferID, transferAmount);
+		setTransferID("");
 		setTransferAmount("");
 	};
 
-	const transferNameHandler = (event) => {
-		setTransferName(event.target.value);
+	const transferIDHandler = (event) => {
+		setTransferID(event.target.value);
 	};
 
 	const transferAmountHandler = (event) => {
@@ -59,12 +56,12 @@ const Transfer = (props) => {
 			<Card className={classes.input}>
 				<form onSubmit={transferHandler}>
 					<div>
-						<label htmlFor="name">Name</label>
+						<label htmlFor="ID">ID#</label>
 						<input
-							id="name"
-							type="text"
-							value={transferName}
-							onChange={transferNameHandler}
+							id="ID"
+							type="number"
+							value={transferID}
+							onChange={transferIDHandler}
 						/>
 					</div>
 					<div>

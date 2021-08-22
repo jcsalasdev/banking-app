@@ -42,10 +42,14 @@
 	border: none;
 	width: 2.4rem;
 	box-shadow: none;
+	margin: 0.2rem;
 
 	font-size: 2rem;
 	color: whitesmoke;
 	cursor: pointer;
+}
+.expense-btn {
+	display: flex;
 }
 .expense-item__btn:hover {
 	background-color: transparent;
