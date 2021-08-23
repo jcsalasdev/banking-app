@@ -4,36 +4,50 @@ import Card from "../UI/Card";
 import Button from "../UI/Button";
 import ErrorModal from "../UI/ErrorModal";
 import classes from "./Transfer.module.css";
+import useDispatchUsers from "../../context/UsersProvider/useDispatchUsers";
 
-const Transfer = (props) => {
-	const [transferID, setTransferID] = useState("");
+const Transfer = () => {
+	const [fromID, setFromID] = useState("");
+	const [toID, setToID] = useState("");
 	const [transferAmount, setTransferAmount] = useState("");
 	const [error, setError] = useState();
+	const userDispatcher = useDispatchUsers();
 
 	const transferHandler = (event) => {
 		event.preventDefault();
-		if (transferID.trim().length === 0 || transferAmount.trim().length === 0) {
+		if (
+			toID.trim().length === 0 ||
+			fromID.trim().length === 0 ||
+			transferAmount.trim().length === 0
+		) {
 			setError({
 				title: "Invalid input",
 				message:
-					"Please enter a valid ID  and transfer amount (non-empty values).",
+					"Please enter a valid name  and transfer amount (non-empty values).",
 			});
 			return;
 		}
 		if (transferAmount < 5) {
 			setError({
 				title: "Invalid amount",
-				message: "Please enter a valid amount (min. 5$).",
+				message: "Please enter a valid amount (> 5$).",
 			});
 			return;
 		}
-		props.onTransfer(transferID, transferAmount);
-		setTransferID("");
+		userDispatcher({
+			type: "transfer",
+			payload: { to: toID, from: fromID, amount: transferAmount },
+		});
+		setToID("");
+		setFromID("");
 		setTransferAmount("");
 	};
 
-	const transferIDHandler = (event) => {
-		setTransferID(event.target.value);
+	const fromIDHandler = (event) => {
+		setFromID(event.target.value);
+	};
+	const toIDHandler = (event) => {
+		setToID(event.target.value);
 	};
 
 	const transferAmountHandler = (event) => {
@@ -56,13 +70,17 @@ const Transfer = (props) => {
 			<Card className={classes.input}>
 				<form onSubmit={transferHandler}>
 					<div>
-						<label htmlFor="ID">ID#</label>
+						<label htmlFor="id1">From ID#</label>
 						<input
-							id="ID"
-							type="number"
-							value={transferID}
-							onChange={transferIDHandler}
+							id="id1"
+							type="text"
+							value={fromID}
+							onChange={fromIDHandler}
 						/>
+					</div>
+					<div>
+						<label htmlFor="ID">to ID</label>
+						<input id="ID" type="number" value={toID} onChange={toIDHandler} />
 					</div>
 					<div>
 						<label htmlFor="amount">Transfer Amount</label>

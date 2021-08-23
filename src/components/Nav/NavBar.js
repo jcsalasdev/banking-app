@@ -1,15 +1,18 @@
 import "./NavBar.css";
 import logo from "./logo.png";
-import { Link } from "react-router-dom";
+import { useAuthDispatch } from "../../context/UseAuth/UseAuth";
 
 function NavBar() {
+	const authDispatcher = useAuthDispatch();
+	function handleSignOut() {
+		authDispatcher({ type: "log out" });
+	}
 	return (
 		<div className="Nav-container">
 			<ul className="Nav-container_ul">
-				<li className="name">Admin</li>
-				<Link to="/" style={{ textDecoration: "none", color: "white" }}>
-					<li className="sign-out">Sign Out</li>
-				</Link>
+				<li className="sign-out" onClick={handleSignOut}>
+					Sign Out
+				</li>
 			</ul>
 
 			<div className="logo">

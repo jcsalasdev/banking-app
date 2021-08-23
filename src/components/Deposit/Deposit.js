@@ -4,8 +4,9 @@ import Card from "../UI/Card";
 import Button from "../UI/Button";
 import ErrorModal from "../UI/ErrorModal";
 import classes from "./Deposit.module.css";
-
-const Deposit = (props) => {
+import useDispatachUsers from "../../context/UsersProvider/useDispatchUsers";
+const Deposit = () => {
+	const usersDispatcher = useDispatachUsers();
 	const [clientID, setClientID] = useState("");
 	const [depositAmount, setDepositAmount] = useState("");
 	const [error, setError] = useState();
@@ -17,7 +18,7 @@ const Deposit = (props) => {
 			setError({
 				title: "Invalid input",
 				message:
-					"Please enter a valid ID  and deposit amount (non-empty values).",
+					"Please enter a valid ID#  and deposit amount (non-empty values).",
 			});
 			return;
 		}
@@ -25,12 +26,14 @@ const Deposit = (props) => {
 		if (depositAmount < 10) {
 			setError({
 				title: "Invalid amount",
-				message: "Please enter a valid amount (min. 10$).",
+				message: "Please enter a valid deposit amount (> 10$).",
 			});
 			return;
 		}
-		props.onDeposit(clientID, depositAmount);
-
+		usersDispatcher({
+			type: "deposit",
+			payload: { id: clientID, amount: depositAmount },
+		});
 		setClientID("");
 		setDepositAmount("");
 	};
@@ -59,10 +62,10 @@ const Deposit = (props) => {
 			<Card className={classes.input}>
 				<form onSubmit={depositHandler}>
 					<div>
-						<label htmlFor="ID">ID#</label>
+						<label htmlFor="ID">Client ID</label>
 						<input
 							id="ID"
-							type="text"
+							type="number"
 							value={clientID}
 							onChange={clientIDHandler}
 						/>

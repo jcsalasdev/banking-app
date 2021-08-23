@@ -1,28 +1,25 @@
 import "./Aside.css";
-import { Link } from "react-router-dom";
+import { Link, useRouteMatch } from "react-router-dom";
 function Aside() {
+	const { url } = useRouteMatch();
 	return (
 		<div className="Aside-container">
-			<Link to="/Admin/UserData/Transfer">
-				<button className="send-money">Transfer</button>
+			<Link to={`${url}/deposit`}>
+				<button className="send-money">Deposit</button>
 			</Link>
 
-			<Link to="/Admin/UserData/Deposit">
-				<button> Deposit</button>
+			<Link to={`${url}/transfer`}>
+				<button> Transfer</button>
 			</Link>
 
-			<Link to="/Admin/UserData/Withdraw">
+			<Link to={`${url}/withdraw`}>
 				<button>Withdraw</button>
 			</Link>
 
-			<Link to="/Admin/UserData/Add-user">
+			<Link to={`${url}/add-user`}>
 				<button className="Accounts">
 					Accounts <i className="fas fa-plus-circle"></i>
 				</button>
-			</Link>
-
-			<Link to="/Admin/BudgetApp">
-				<button className="Budget">Budget App</button>
 			</Link>
 		</div>
 	);

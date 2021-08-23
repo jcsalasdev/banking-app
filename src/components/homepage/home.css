@@ -11,7 +11,7 @@
 	text-align: center;
 
 	padding: 3rem 3rem 7rem 3rem;
-	margin: 2rem;
+	margin: 2rem 7rem 2rem 2rem;
 }
 .home-para {
 	background-image: url(./lacasa.png);
@@ -22,6 +22,7 @@
 	text-shadow: 0.2rem 0.2rem 0.2rem black;
 
 	height: 35rem;
+	width: 50vw;
 	display: flex;
 	align-items: flex-end;
 	justify-content: center;

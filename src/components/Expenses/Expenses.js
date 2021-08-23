@@ -10,7 +10,7 @@ const Expenses = (props) => {
 			<ExpenseItem
 				key={props.items[i].id}
 				title={props.items[i].title}
-				amount={props.items[i].amount}
+				price={props.items[i].price}
 				date={new Date(props.items[i].date)}
 			/>
 		);
