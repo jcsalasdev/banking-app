@@ -70,7 +70,7 @@ const Transfer = () => {
 			<Card className={classes.input}>
 				<form onSubmit={transferHandler}>
 					<div>
-						<label htmlFor="id1">From ID#</label>
+						<label htmlFor="id1">Sender ID#</label>
 						<input
 							id="id1"
 							type="text"
@@ -79,7 +79,7 @@ const Transfer = () => {
 						/>
 					</div>
 					<div>
-						<label htmlFor="ID">to ID</label>
+						<label htmlFor="ID">Receiver ID#</label>
 						<input id="ID" type="number" value={toID} onChange={toIDHandler} />
 					</div>
 					<div>

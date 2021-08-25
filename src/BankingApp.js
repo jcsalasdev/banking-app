@@ -24,10 +24,10 @@ const BankingApp = () => {
 				<Aside />
 
 				<div>
-					<Route exact path={`${url}/deposit`} component={Deposit} />
-					<Route exact path={`${url}/transfer`} component={Transfer} />
-					<Route exact path={`${url}/withdraw`} component={Withdraw} />
-					<Route exact path={`${url}/add-user`} component={AddUser} />
+					<Route path={`${url}/deposit`} component={Deposit} />
+					<Route path={`${url}/transfer`} component={Transfer} />
+					<Route path={`${url}/withdraw`} component={Withdraw} />
+					<Route path={`${url}/add-user`} component={AddUser} />
 					<UsersList />
 				</div>
 			</div>

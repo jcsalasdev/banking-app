@@ -40,16 +40,23 @@ span {
 }
 
 .Nav-container_ul {
+	font-size: 1.5rem;
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
 }
-
+.out {
+	margin-right: 0.5rem;
+}
 li {
 	list-style: none;
-	padding: 0.5rem;
+	padding: 0 0.5rem;
 }
 .sign-out {
 	cursor: pointer;
+	padding-right: 1rem;
+}
+.sign-out:hover {
+	color: violet;
 }

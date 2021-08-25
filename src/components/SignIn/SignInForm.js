@@ -98,7 +98,7 @@ const SignInForm = () => {
 				/>
 				<div className="container-btn">
 					<button className="btn" type="submit" value="submit">
-						Sign In
+						Sign In <i className="fas fa-sign-in-alt"></i>
 					</button>
 				</div>
 			</form>

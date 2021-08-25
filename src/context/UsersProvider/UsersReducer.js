@@ -33,7 +33,7 @@ export default function reducerFn(state, action) {
 			const foundUser = copy.find(function (user) {
 				return user.id === action.payload.id;
 			});
-			console.log(foundUser);
+
 			if (foundUser && foundUser.balance >= action.payload.amount) {
 				foundUser.balance =
 					Number(foundUser.balance) - Number(action.payload.amount);
@@ -49,7 +49,7 @@ export default function reducerFn(state, action) {
 			const receiver = copy.find(function (user) {
 				return user.id === action.payload.to;
 			});
-			if (from && to && amount <= sender.balance) {
+			if (sender && receiver && amount <= sender.balance) {
 				sender.balance = Number(sender.balance) - Number(amount);
 				receiver.balance = Number(receiver.balance) + Number(amount);
 				return copy;

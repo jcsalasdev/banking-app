@@ -15,7 +15,9 @@ const UsersList = () => {
 					<ul key={user.id}>
 						<li>
 							<section>
-								<h3>{user.name}</h3>
+								<h3>
+									<i className="fas fa-user-alt"></i> {user.name}
+								</h3>
 								<p>#{user.id}</p>
 							</section>
 							<section>

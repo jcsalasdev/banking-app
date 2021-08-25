@@ -2,17 +2,17 @@ import SignIn from "./Components/SignIn/SignIn";
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./style.css";
-import BankingApp from "./BankingApp";
 import BudgetApp2 from "./BudgetApp2";
+import BankingApp from "./BankingApp";
 
 function App() {
 	return (
-		<Router>
+		<Router basename="/banking-app">
 			<div>
 				<Switch>
-					<Route path="/signin" component={SignIn} />
-					<Route path="/admin" component={BankingApp} />
-					<Route exact path="/" component={BudgetApp2} />
+					<Route path={"/signin"} component={SignIn} />
+					<Route path={"/admin"} component={BankingApp} />
+					<Route exact path={"/"} component={BudgetApp2} />
 				</Switch>
 			</div>
 		</Router>

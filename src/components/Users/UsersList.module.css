@@ -1,7 +1,7 @@
 .users {
 	margin: 2rem 5.5rem;
 	width: 70vw;
-	height: 29rem;
+	height: 27rem;
 	overflow-y: scroll;
 }
 .users::-webkit-scrollbar {

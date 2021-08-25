@@ -10,9 +10,23 @@ import { Redirect } from "react-router-dom";
 const BudgetApp2 = () => {
 	const user = useAuth();
 	const balance = user?.balance || 0;
-	const [expenses, setExpenses] = useState(
-		JSON.parse(localStorage.getItem("expenses"))
-	);
+	// const [expenses, setExpenses] = useState(
+	// 	JSON.parse(localStorage.getItem("expenses"))
+	// );
+	const [expenses, setExpenses] = useState([
+		{
+			id: "e1",
+			title: "Toilet Paper",
+			price: 5,
+			date: new Date(2020, 7, 14),
+		},
+		{
+			id: "e2",
+			title: "New TV",
+			price: 500.49,
+			date: new Date(2021, 2, 12),
+		},
+	]);
 
 	const totalExpenses = expenses.reduce(function fn(prev, curr) {
 		return prev + Number(curr.price);
@@ -21,6 +35,12 @@ const BudgetApp2 = () => {
 	const addExpenseHandler = (expense) => {
 		setExpenses([...expenses, expense]);
 	};
+	useEffect(() => {
+		const expenses = JSON.parse(localStorage.getItem("expenses"));
+		if (expenses) {
+			setExpenses(expenses);
+		}
+	}, []);
 
 	useEffect(() => {
 		localStorage.setItem("expenses", JSON.stringify(expenses));

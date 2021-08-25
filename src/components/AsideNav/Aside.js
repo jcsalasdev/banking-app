@@ -5,15 +5,21 @@ function Aside() {
 	return (
 		<div className="Aside-container">
 			<Link to={`${url}/deposit`}>
-				<button className="send-money">Deposit</button>
+				<button className="send-money">
+					<i className="fas fa-donate"></i> Deposit
+				</button>
 			</Link>
 
 			<Link to={`${url}/transfer`}>
-				<button> Transfer</button>
+				<button>
+					<i className="fas fa-hand-holding-usd"></i> Transfer
+				</button>
 			</Link>
 
 			<Link to={`${url}/withdraw`}>
-				<button>Withdraw</button>
+				<button>
+					<i className="far fa-money-bill-alt"></i> Withdraw
+				</button>
 			</Link>
 
 			<Link to={`${url}/add-user`}>

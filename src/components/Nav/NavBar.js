@@ -10,8 +10,9 @@ function NavBar() {
 	return (
 		<div className="Nav-container">
 			<ul className="Nav-container_ul">
+				<i className="far fa-user-circle"></i>
 				<li className="sign-out" onClick={handleSignOut}>
-					Sign Out
+					| <i className="fas fa-sign-out-alt out"></i>
 				</li>
 			</ul>
 

@@ -62,7 +62,7 @@ const Withdraw = () => {
 			<Card className={classes.input}>
 				<form onSubmit={withdrawHandler}>
 					<div>
-						<label htmlFor="name">ID#</label>
+						<label htmlFor="name">Client ID</label>
 						<input
 							id="ID"
 							type="text"
